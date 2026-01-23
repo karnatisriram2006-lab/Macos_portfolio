@@ -18,8 +18,10 @@ const Navbar = () => {
                     <li key={id}><img src={img} className="icon-hover" alt={`icon-${id}`}/></li>
                 ))}
             </ul>
+            <time>{dayjs().format('ddd MMM D h:mm A')}</time>
         </div>
-        <time>{dayjs().format('ddd MMM D h:mm A')}</time>
+
+
     </nav>
     )
 }
