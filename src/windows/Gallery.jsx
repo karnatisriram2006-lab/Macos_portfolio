@@ -5,7 +5,7 @@ import {gallery, photosLinks} from "#constants/index.js";
 import {use} from "react";
 import useWindowStore from "#store/window.js";
 
-const Gallery = () =>{
+export const Gallery = () => {
     const {openWindows}=useWindowStore();
     return (
         <>

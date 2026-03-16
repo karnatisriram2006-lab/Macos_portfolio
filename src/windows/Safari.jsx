@@ -3,7 +3,7 @@ import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import {PanelLeft, ChevronLeft, ChevronRight, ShieldHalf, Search, Share, Plus, Copy, MoveRight} from "lucide-react";
 import {blogPosts} from "#constants/index.js";
 
-const Safari =()=>{
+export const Safari = () => {
     return (<>
         <div id="window-header">
             <WindowControls target="safari"/>

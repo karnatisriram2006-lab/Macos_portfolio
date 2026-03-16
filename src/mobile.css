@@ -1,0 +1,507 @@
+@reference "./index.css";
+
+@layer components {
+    .ios-home {
+        @apply fixed inset-0 w-full h-full bg-cover bg-center flex flex-col items-center justify-between text-white select-none overflow-hidden transition-all duration-300;
+        background-image: url("/images/wallpaperformobile.jpg");
+    }
+
+    .ios-home--zoomed {
+        @apply scale-[0.93] opacity-[0.55];
+    }
+
+    .ios-statusbar {
+        @apply w-full flex justify-between items-center px-6 pt-[env(safe-area-inset-top,20px)] pb-2 text-sm font-semibold z-50;
+    }
+
+    .ios-statusbar__left {
+        @apply flex items-center;
+    }
+
+    .ios-statusbar__right {
+        @apply flex items-center gap-1.5;
+        svg {
+            @apply size-4;
+        }
+    }
+
+    .ios-dateblock {
+        @apply w-full px-8 mt-12 flex flex-col items-center;
+        
+        .weekday {
+            @apply text-xl font-medium;
+        }
+        
+        .date {
+            @apply text-7xl font-thin font-georama mt-1;
+        }
+    }
+
+    .ios-grid {
+        @apply w-full grid grid-cols-4 gap-y-7 px-6 mt-8 mb-auto;
+    }
+
+    /* App Icons */
+    .ios-appicon {
+        @apply flex flex-col items-center gap-1.5 active:scale-[0.88] transition-all duration-200 cursor-pointer;
+    }
+
+    .ios-appicon__bubble {
+        @apply size-16 rounded-2xl flex items-center justify-center overflow-hidden shadow-lg;
+        
+        img {
+            @apply size-full object-cover;
+        }
+        
+        span {
+            @apply text-3xl;
+        }
+    }
+
+    .ios-appicon__label {
+        @apply text-[11px] font-medium text-center truncate w-full;
+    }
+
+    /* Dock */
+    .ios-dock {
+        @apply w-[calc(100%-32px)] max-w-sm mb-[calc(env(safe-area-inset-bottom,20px)+20px)] bg-black/20 backdrop-blur-2xl rounded-[32px] p-4 flex justify-around items-center border border-white/10;
+    }
+
+    /* Home Indicator */
+    .ios-home-bar {
+        @apply fixed bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 z-[110];
+        
+        &::after {
+            content: "";
+            @apply block w-full h-full bg-white/35 rounded-full;
+        }
+    }
+
+    /* App Shell */
+    .ios-app-screen {
+        @apply fixed inset-0 z-[100] bg-black flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)];
+        will-change: transform;
+        background: #000000;
+    }
+
+    .ios-navbar {
+        @apply sticky top-0 w-full px-4 border-b z-10 pt-[env(safe-area-inset-top,20px)] grid grid-cols-[1fr_auto_1fr] items-center;
+        height: calc(44px + env(safe-area-inset-top, 20px));
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        
+        /* Override index.css justify-center on nav div */
+        div { @apply !justify-start !w-auto !gap-1 !flex-row; }
+    }
+
+    .ios-navbar__back {
+        @apply flex items-center gap-0.5 text-[#007AFF] cursor-pointer active:opacity-50 z-20 justify-self-start !w-auto;
+        
+        .chevron {
+            @apply text-2xl font-normal leading-none;
+            margin-top: -2px;
+        }
+        
+        .label {
+            @apply text-[17px] font-normal;
+        }
+    }
+
+    .ios-navbar__title {
+        @apply col-start-2 text-white font-semibold text-[17px] truncate max-w-[200px] text-center;
+    }
+
+    .ios-navbar__right {
+        @apply col-start-3 justify-self-end w-10 h-full;
+    }
+
+    .ios-app-body {
+        @apply flex-1 overflow-y-auto overscroll-contain bg-black;
+        padding: 0;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Mobile Window Resets and App Overrides */
+    .mobile-window {
+        @apply !static !transform-none !w-full !max-w-full !inset-auto !h-auto !shadow-none !rounded-none !p-0 !m-0 !overflow-visible;
+        
+        #window-header {
+            @apply !hidden;
+        }
+
+        /* Force inner flex containers to column layout for mobile, 
+           except for those explicitly needing row */
+        .flex:not(.ios-navbar, .sidebar ul, .sidebar-group ul, .ios-statusbar, .ios-navbar__back, .flex-row-mobile) {
+            @apply !flex-col !w-full;
+        }
+
+        /* Inner flex items that should NOT be forced to col */
+        .flex-row-mobile {
+            @apply !flex-row !w-auto !flex-nowrap;
+        }
+
+        /* Generic Card Wrapping — dark glass */
+        > div, > section, .blog, .p-5, .techstack, .contact-content,
+        &#terminal, &#safari, &#finder, &#photos, &#resume, &#txtfile, &#imgfile {
+            background: #000000;
+            color: #FFFFFF;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        .card-section,
+        #finder .sidebar,
+        #finder .content,
+        #photos .sidebar,
+        #safari .blog,
+        #terminal .techstack {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 16px !important;
+            color: #FFFFFF !important;
+            margin: 12px 16px !important;
+            box-shadow: none !important;
+        }
+
+        /* All text inside windows — white hierarchy */
+        h1, h2, h3 {
+            color: #FFFFFF !important;
+        }
+
+        p, span, li {
+            color: rgba(255, 255, 255, 0.75) !important;
+        }
+
+        a {
+            color: #0A84FF !important;
+        }
+
+        /* Finder Overrides */
+        &#finder {
+            @apply flex flex-col w-full overflow-visible bg-transparent shadow-none rounded-none;
+            
+            .finder-container {
+                @apply !bg-transparent !border-none !shadow-none !mb-0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .sidebar {
+                @apply !flex-row w-full bg-transparent mb-3 py-1 overflow-x-auto flex-none shadow-none;
+                
+                .sidebar-group {
+                    @apply !flex !flex-row gap-2;
+                    h3 { @apply !hidden; }
+                }
+
+                ul {
+                    @apply !flex-row flex px-3 gap-2;
+                }
+                
+                li {
+                    @apply px-4 py-2 text-[15px] bg-[#2C2C2E] rounded-full border border-white/5 whitespace-nowrap flex-shrink-0 active:opacity-60 transition-all text-gray-400;
+                    
+                    &.active {
+                        background: rgba(10, 132, 255, 0.25) !important;
+                        color: #0A84FF !important;
+                        @apply font-semibold;
+                        border-radius: 10px;
+                    }
+                    
+                    img { @apply hidden; }
+                }
+            }
+            
+            .content {
+                @apply static w-full max-w-full bg-transparent rounded-xl py-2 overflow-visible border-none;
+                margin: 0 !important;
+                
+                li {
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+                    padding: 14px 16px !important;
+                    color: rgba(255, 255, 255, 0.85) !important;
+
+                    &:last-child {
+                        border-bottom: none !important;
+                    }
+                    
+                    img {
+                        @apply size-9 object-contain flex-shrink-0;
+                    }
+                    
+                    p {
+                        @apply text-[15px] font-medium text-left w-auto truncate;
+                        color: rgba(255, 255, 255, 0.85) !important;
+                    }
+                }
+            }
+        }
+
+        /* Gallery Overrides */
+        &#photos {
+            @apply static w-full transform-none flex flex-col bg-transparent shadow-none rounded-none;
+            
+            .sidebar {
+                @apply !flex-row w-full bg-transparent mb-4 py-3 overflow-x-auto flex-none border-none shadow-none;
+                
+                h2 { @apply !hidden; }
+
+                ul {
+                    @apply !flex-row flex px-3 gap-2;
+                }
+                
+                li {
+                    @apply px-4 py-2 text-[15px] bg-[#2C2C2E] rounded-full border-none whitespace-nowrap flex-shrink-0 active:opacity-60 transition-all;
+                    color: rgba(255, 255, 255, 0.75) !important;
+                    
+                    &:first-child {
+                        @apply font-semibold;
+                        background: rgba(10, 132, 255, 0.25) !important;
+                        color: #0A84FF !important;
+                        border-radius: 10px;
+                    }
+                    
+                    img { @apply hidden; }
+                }
+            }
+            
+            .gallery {
+                @apply w-full p-0 bg-transparent shadow-none rounded-none border-none overflow-visible;
+                
+                ul {
+                    @apply grid grid-cols-2 gap-1;
+                    
+                    li {
+                        @apply !row-auto !col-auto aspect-square p-0 rounded-none bg-transparent m-0 !static;
+                        
+                        img {
+                            @apply size-full object-cover rounded-lg;
+                            border-radius: 10px !important;
+                            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Terminal Overrides */
+        &#terminal {
+            .techstack {
+                color: #00FF94 !important;
+                @apply font-mono p-4 rounded-xl !w-full;
+                
+                * { color: #00FF94 !important; }
+                .check { color: #00FF94 !important; }
+
+                .label { @apply !hidden; }
+                
+                .content {
+                    @apply !flex !flex-col gap-4 border-none py-2 my-0 shadow-none bg-transparent;
+                    
+                    li {
+                        @apply !flex !flex-row items-start gap-3 bg-transparent shadow-none p-0 m-0 border-none;
+                        
+                        h3 { color: #00FF94 !important; @apply font-bold text-sm w-24 flex-shrink-0 m-0; }
+                        
+                        ul { @apply !flex !flex-row flex-wrap gap-1 items-center bg-transparent shadow-none p-0 m-0; }
+                    }
+                }
+                
+                .footnote { 
+                    @apply mt-4 pt-4 border-t border-[#00FF94]/20; 
+                    p.text-black { color: #00FF94 !important; }
+                    p { color: #00FF94 !important; }
+                }
+            }
+        }
+
+        /* Contact Overrides — premium iOS profile + link-in-bio card */
+        &#contact {
+            background: #000000;
+            width: 100% !important;
+            padding: 24px 20px 40px !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            min-height: 100%;
+            border: none;
+
+            /* Avatar */
+            img:first-of-type {
+                width: 96px;
+                height: 96px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 3px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.6);
+                margin-bottom: 16px;
+            }
+
+            /* Name / heading */
+            h2, h3 {
+                color: #FFFFFF !important;
+                font-size: 24px !important;
+                font-weight: 700 !important;
+                text-align: center !important;
+                margin-bottom: 8px !important;
+                letter-spacing: -0.5px !important;
+            }
+
+            /* Bio / description text */
+            p:not(.link-label) {
+                color: rgba(255, 255, 255, 0.5) !important;
+                font-size: 14px !important;
+                text-align: center !important;
+                line-height: 1.6 !important;
+                max-width: 280px !important;
+                margin-bottom: 24px !important;
+            }
+
+            /* Email pill-like link */
+            p:has(img) + p, /* Match the email p in Contact.jsx */
+            a[href^="mailto"] {
+                color: #0A84FF !important;
+                font-size: 14px !important;
+                text-align: center !important;
+                margin-bottom: 32px !important;
+                display: block !important;
+            }
+
+            /* Link list — vertical stack */
+            ul {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 12px !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                list-style: none !important;
+                
+                /* Each social link card */
+                li {
+                    width: 100% !important;
+                    height: auto !important;
+                    border-radius: 16px !important;
+                    overflow: hidden;
+                    position: relative;
+                    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                    box-shadow: none !important;
+                    margin: 0 !important;
+                    transition: transform 0.15s ease, opacity 0.15s ease;
+
+                    &:active {
+                        transform: scale(0.97);
+                        opacity: 0.85;
+                    }
+
+                    a {
+                        display: flex !important;
+                        flex-direction: row !important;
+                        align-items: center !important;
+                        gap: 14px !important;
+                        padding: 16px 20px !important;
+                        text-decoration: none !important;
+                        width: 100% !important;
+                        background: transparent !important;
+                    }
+
+                    /* Icon inside link */
+                    svg, img {
+                        width: 24px !important;
+                        height: 24px !important;
+                        flex-shrink: 0 !important;
+                        filter: brightness(0) invert(1) !important;
+                        opacity: 0.9 !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        margin: 0 !important;
+                    }
+
+                    /* Link label text */
+                    p, span {
+                        color: #FFFFFF !important;
+                        font-size: 16px !important;
+                        font-weight: 600 !important;
+                        letter-spacing: -0.2px !important;
+                        margin: 0 !important;
+                    }
+
+                    /* Chevron arrow on right */
+                    &::after {
+                        content: "›";
+                        position: absolute;
+                        right: 20px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: rgba(255, 255, 255, 0.3);
+                        font-size: 20px;
+                        pointer-events: none;
+                    }
+
+                    /* Individual link colors — vibrant glass */
+                    &:nth-child(1) {
+                        background: linear-gradient(135deg, rgba(88, 86, 214, 0.35) 0%, rgba(88, 86, 214, 0.15) 100%) !important;
+                        p { color: #BFB8FF !important; }
+                    }
+                    &:nth-child(2) {
+                        background: linear-gradient(135deg, rgba(48, 209, 88, 0.25) 0%, rgba(48, 209, 88, 0.1) 100%) !important;
+                        p { color: #7DFFAA !important; }
+                    }
+                    &:nth-child(3) {
+                        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+                        p { color: #FFFFFF !important; }
+                    }
+                    &:nth-child(4) {
+                        background: linear-gradient(135deg, rgba(10, 132, 255, 0.35) 0%, rgba(10, 132, 255, 0.15) 100%) !important;
+                        p { color: #82C8FF !important; }
+                    }
+                }
+            }
+        }
+
+        /* Safari Overrides */
+        &#safari {
+            .blog {
+                @apply bg-transparent p-0 shadow-none rounded-none;
+                
+                h2 { @apply text-2xl font-bold text-white mb-6; }
+                
+                .space-y-8 { @apply space-y-4; }
+                
+                .blog-post {
+                    @apply !flex !flex-col bg-transparent rounded-xl overflow-hidden shadow-none;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+                    margin-bottom: 16px;
+                    padding-bottom: 16px;
+                    
+                    .col-span-2 { @apply w-full h-48 overflow-hidden; }
+                    
+                    img { @apply size-full object-cover rounded-none; }
+                    
+                    .content {
+                        @apply p-4 space-y-2;
+                        p { @apply text-blue-400 font-medium text-xs; }
+                        h3 { @apply text-lg font-bold text-white; }
+                        a { @apply !mt-3 text-blue-400 font-semibold; }
+                    }
+                }
+            }
+        }
+
+        /* Resume Overrides */
+        &#resume {
+            @apply w-full bg-transparent rounded-none shadow-none;
+            .react-pdf__Page { @apply !w-full; }
+            .react-pdf__Page__canvas { @apply !w-full !h-auto; }
+        }
+
+        /* Generic Preview (Image/Text) Overrides */
+        &#imgfile, &#txtfile {
+            @apply w-full bg-transparent rounded-none shadow-none;
+            .p-5 { @apply !shadow-none !bg-transparent !p-4; }
+        }
+    }
+}

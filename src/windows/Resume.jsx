@@ -9,7 +9,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 //     import.meta.url,
 // ).toString();
 pdfjs.GlobalWorkerOptions.workerSrc =`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-const Resume=()=>{
+export const Resume = () => {
     return <>
         <div id="window-header">
             <WindowControls target="resume"/>

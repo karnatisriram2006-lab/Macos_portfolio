@@ -2,7 +2,7 @@ import {WindowControls} from "#components/index.js";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import useWindowStore from "#store/window.js";
 
-const Image=()=>{
+export const Image = () => {
     const {windows}=useWindowStore();
     const data=windows.imgfile?.data;
     if(!data) return null;
@@ -12,7 +12,7 @@ const Image=()=>{
             <WindowControls target="imgfile"/>
             <h2>{name}</h2>
         </div>
-        <div className="p-5 space-y-6 bg-white">
+        <div className="p-5 space-y-6">
 
             {imageUrl?(
                 <div className="w-full">

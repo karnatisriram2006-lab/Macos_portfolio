@@ -3,7 +3,7 @@ import {techStack} from "#constants/index.js";
 import {Check, Flag} from "lucide-react";
 import {WindowControls }from "#components";
 
-const Terminal  =()=>{
+export const Terminal = () => {
     return <>
         <div id="window-header">
             <WindowControls target="terminal"/>

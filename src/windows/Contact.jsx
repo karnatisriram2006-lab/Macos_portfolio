@@ -2,7 +2,7 @@ import {WindowControls} from "#components/index.js";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import {socials} from "#constants/index.js";
 
-const Contact =()=>{
+export const Contact = () => {
 
     return <>
      <div id="window-header">
