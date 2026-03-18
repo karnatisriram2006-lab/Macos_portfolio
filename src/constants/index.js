@@ -229,7 +229,7 @@ const WORK_LOCATION = {
             icon: "/images/folder.png",
             kind: "folder",
             position: "top-10 left-5", // icon position inside Finder
-            windowPosition: "top-[5vh] right-40", // optional: Finder window position
+            windowPosition: "top-[20vh] right-40", // optional: Finder window position
             children: [
                 {
                     id: 1,
@@ -239,7 +239,7 @@ const WORK_LOCATION = {
                     fileType: "txt",
                     position: "top-5 left-10",
                     description: [
-                       " Movies Sriram is a modern movie discovery platform that helps users explore trending, popular, and top-rated movies with a smooth and responsive UI. The website provides detailed movie information such as posters, overview, release details, and ratings, giving users a complete cinematic browsing experience. It is designed with a clean layout, fast performance, and mobile-first responsiveness, making it easy to navigate across all devices."
+                        " Movies Sriram is a modern movie discovery platform that helps users explore trending, popular, and top-rated movies with a smooth and responsive UI. The website provides detailed movie information such as posters, overview, release details, and ratings, giving users a complete cinematic browsing experience. It is designed with a clean layout, fast performance, and mobile-first responsiveness, making it easy to navigate across all devices."
                     ],
                 },
                 {
@@ -279,7 +279,7 @@ const WORK_LOCATION = {
             icon: "/images/folder.png",
             kind: "folder",
             position: "top-52 right-80",
-            windowPosition: "top-[30vh] right-40",
+            windowPosition: "top-[40vh] right-43",
             children: [
                 {
                     id: 1,
@@ -329,7 +329,7 @@ const WORK_LOCATION = {
             icon: "/images/folder.png",
             kind: "folder",
             position: "top-10 left-80",
-            windowPosition: "top-[45vh] right-40",
+            windowPosition: "top-[60vh] right-40",
             children: [
                 {
                     id: 1,
@@ -487,14 +487,14 @@ export const locations = {
 const INITIAL_Z_INDEX = 1000;
 
 const WINDOW_CONFIG = {
-    finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+    finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[15vh] left-[20vw]" } },
+    contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[25vh] left-[35vw]" } },
+    resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[10vh] left-[30vw]" } },
+    safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[12vh] left-[15vw]" } },
+    photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[20vh] left-[25vw]" } },
+    terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[30vh] left-[10vw]" } },
+    txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[18vh] right-[10vw]" } },
+    imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: { windowPosition: "top-[15vh] left-[20vw]" } },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };

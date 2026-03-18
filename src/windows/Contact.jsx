@@ -10,7 +10,7 @@ export const Contact = () => {
          <h2>Contact Me</h2>
      </div>
      <div className="p-5 space-y-5">
-         <img src="/images/sriram1.jpeg" alt="adrian" className="w-25 rounded-full"/>
+         <img src="/images/sriram1.jpeg" alt="Sriram" className="w-25 rounded-full"/>
          <h3>Let's Connect</h3>
          <p>Got an idea?A bug to squash? Or just wanna talk tech? I'm in.</p>
          <p>karnatiSriram2006@gmail.com</p>
